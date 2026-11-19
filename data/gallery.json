@@ -1,0 +1,82 @@
+[
+  {
+    "title": "全関東学生ジムカーナ選手権",
+    "date": "2027-05-18",
+    "category": "Competition",
+    "image": "images/album/gymkhana01.jpg",
+    "description": "決勝ヒート走行中の様子。団体3位を獲得。",
+    "author": "広報担当",
+    "featured": true,
+    "event": "2027関東学生ジムカーナ"
+  },
+  {
+    "title": "新歓走行会",
+    "date": "2027-04-15",
+    "category": "Event",
+    "image": "images/album/shinkan01.jpg",
+    "description": "新入生が初めてハンドルを握りました。",
+    "author": "広報担当",
+    "featured": true,
+    "event": "2027新歓走行会"
+  },
+  {
+    "title": "春合宿 1日目",
+    "date": "2027-03-05",
+    "category": "Camp",
+    "image": "images/album/camp01.jpg",
+    "description": "朝一番のコース確認。",
+    "author": "副将",
+    "featured": false,
+    "event": "2027春合宿"
+  },
+  {
+    "title": "ブレーキ整備",
+    "date": "2027-02-20",
+    "category": "Maintenance",
+    "image": "images/album/maint01.jpg",
+    "description": "パッド交換とフルード入れ替え。",
+    "author": "整備担当",
+    "featured": false,
+    "event": "2027春の整備day"
+  },
+  {
+    "title": "月例練習会",
+    "date": "2027-02-01",
+    "category": "Practice",
+    "image": "images/album/practice01.jpg",
+    "description": "パイロンコースで基礎練習。",
+    "author": "主将",
+    "featured": false,
+    "event": "2027月例練習会"
+  },
+  {
+    "title": "年間計画ミーティング",
+    "date": "2027-01-10",
+    "category": "Meeting",
+    "image": "images/album/meeting01.jpg",
+    "description": "新体制での目標を共有。",
+    "author": "広報担当",
+    "featured": false,
+    "event": "2027年間計画ミーティング"
+  },
+  {
+    "title": "秋の練習会",
+    "date": "2026-11-02",
+    "category": "Practice",
+    "image": "images/album/practice02.jpg",
+    "description": "タイム計測のデモ走行。",
+    "author": "主将",
+    "featured": false,
+    "event": "2026秋の練習会"
+  },
+  {
+    "title": "決勝ヒート 2本目",
+    "event": "2027関東学生ジムカーナ",
+    "date": "2027-05-18",
+    "category": "Competition",
+    "image": "images/album/gymkhana02.jpg",
+    "description": "2本目で自己ベストを更新。",
+    "author": "広報担当",
+    "featured": false
+  }
+]

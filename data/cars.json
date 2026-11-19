@@ -1,0 +1,4 @@
+[
+  {"name":"Mazda Roadstar","nickname":"ND","year":"2018","category":"Gymkhana","image":"images/cars/roadster.jpg","description":"練習用車両"},
+  {"name":"Suzuki Swift Sport","nickname":"ZC33S","year":"2019","category":"Gymkhana","image":"images/cars/swift.jpg","description":"大会用車両。軽量でコーナリング性能が高い。"}
+]

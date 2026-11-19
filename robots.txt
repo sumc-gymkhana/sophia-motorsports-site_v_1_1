@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /how-to-update.html
+
+Sitemap: https://YOUR-DOMAIN/sitemap.xml

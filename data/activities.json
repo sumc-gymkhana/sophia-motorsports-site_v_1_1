@@ -1,0 +1,6 @@
+[
+  {"title":"春の新歓走行会","date":"2027-04-15","category":"Event","image":"images/activities/shinkan.jpg","description":"新入生向け体験走行会"},
+  {"title":"車両整備day","date":"2027-03-20","category":"Maintenance","image":"images/activities/maintenance.jpg","description":"オイル交換とブレーキ点検を行います。"},
+  {"title":"春合宿","date":"2027-03-05","category":"Camp","image":"images/activities/camp.jpg","description":"3日間の走り込み合宿。"},
+  {"title":"定例ミーティング","date":"2026-10-30","category":"Meeting","image":"images/activities/meeting.jpg","description":"年間計画と役割分担の確認。"}
+]
