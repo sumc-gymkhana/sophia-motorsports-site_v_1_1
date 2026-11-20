@@ -18,11 +18,20 @@
     "comment": "腰が死にそうです。"
   },
   {
+    "name": "霜出 左近",
+    "grade": "3年",
+    "role": "広報",
+    "car": "トヨタ MR-S '99",
+    "wantCar": "シェルビー コブラデイトナクーペ",
+    "image": "images/members/霜出左近.jpg",
+    "comment": "F1が好きです!アメ車とイタ車も好きです"
+  },
+  {
     "name": "小島 Ocean 和暉",
     "grade": "3年",
     "role": "Web運営",
     "car": "R53 MINI",
-    "wantCar": "未定（または車種名）",
+    "wantCar": "BMW Alpina B10 V8s",
     "image": "images/members/小島オーシャン和暉.jpg",
     "comment": "車壊れすぎてて、泣きそうです。"
   }
