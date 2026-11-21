@@ -32,12 +32,12 @@
     ]
   };
   const NAV = [
-    ['index.html', 'Home'], ['about.html', 'About Us'], ['members.html', 'Members'], ['cars.html', 'Cars'],
-    ['activities.html', 'Activities'], ['album.html', 'Album'], ['results.html', 'Results'],
+    ['index.html', 'Home'], ['news.html', 'News'], ['about.html', 'About Us'], ['members.html', 'Members'], ['cars.html', 'Cars'],
+    ['activities.html', 'Activities'], ['album.html', 'Gallery'], ['results.html', 'Results'],
     ['schedules.html', 'Schedules'], ['join.html', 'Join Us'], ['contact.html', 'Contact']
   ];
   const PLACEHOLDER = 'images/placeholder.svg';
-  const NEWS_LIMIT = 5, ACTIVITY_LIMIT = 3, ALBUM_LIMIT = 6;
+  const ACTIVITY_LIMIT = 3;
 
   /* ---------- ユーティリティ ---------- */
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -70,26 +70,13 @@
   }
 
   /* ---------- カード・リストのHTML ---------- */
-  const galleryCard = g => `<article class="card">${img(g.image, g.title)}
-    <div class="card-body"><div class="meta"><time datetime="${esc(g.date)}">${fmtDate(g.date)}</time><span class="tag">${esc(g.category)}</span></div>
-    <h3>${esc(g.title)}</h3><p>${esc(g.description)}</p></div></article>`;
   const activityCard = a => `<article class="card">${img(a.image, a.title)}
     <div class="card-body"><div class="meta"><time datetime="${esc(a.date)}">${fmtDate(a.date)}</time><span class="tag">${esc(a.category)}</span></div>
     <h3>${esc(a.title)}</h3><p>${esc(a.description)}</p></div></article>`;
-  // お知らせ: important:true を上部に固定し、残りを新しい順に並べて合計 NEWS_LIMIT 件
-  const newsHTML = list => {
-    const sorted = [...list].sort(byDateDesc);
-    const items = [...sorted.filter(n => n.important), ...sorted.filter(n => !n.important)].slice(0, NEWS_LIMIT);
-    if (!items.length) return '';
-    return `<ul class="news-list">${items.map(n => {
-      const title = n.url ? `<a class="news-title" href="${esc(n.url)}">${esc(n.title)}</a>` : `<span class="news-title">${esc(n.title)}</span>`;
-      return `<li class="news-item${n.important ? ' is-important' : ''}"><time datetime="${esc(n.date)}">${fmtDate(n.date)}</time>${n.important ? '<span class="badge-important">重要</span>' : ''}${title}</li>`;
-    }).join('')}</ul>`;
-  };
   const snsLink = (s, cls, inner) =>
     `<a class="${cls}" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(s.label)}">${inner}</a>`;
 
-  window.Site = { SITE, esc, fmtDate, byDateDesc, img, ready, loadJSON, render, galleryCard, activityCard };
+  window.Site = { SITE, esc, fmtDate, byDateDesc, img, ready, loadJSON, render, activityCard };
 
   // Google Analytics（SITE.gaId があるときだけ読み込む。HTMLの編集は不要）
   if (SITE.gaId) {
@@ -103,7 +90,8 @@
 
   /* ---------- ページ描画 ---------- */
   ready(() => {
-    const here = location.pathname.split('/').pop() || 'index.html';
+    // 記事詳細などは <body data-nav="news.html"> で、メニューのどこを選択中にするか指定
+    const here = document.body.dataset.nav || location.pathname.split('/').pop() || 'index.html';
     // https:// で始まるリンクは外部リンクとして新しいタブで開く
     const navLinks = NAV.map(([h, l]) => /^https?:\/\//.test(h)
       ? `<a href="${h}" target="_blank" rel="noopener noreferrer">${l}</a>`
@@ -147,17 +135,9 @@
     }
 
     // トップページ自動更新（要素がある場合のみ動作）
-    render(document.getElementById('news-list'), 'data/news.json', newsHTML, 'お知らせはありません。');
+    // News・最新アルバム・注目記事は blog.js が描画
     render(document.getElementById('latest-activities'), 'data/activities.json',
       d => [...d].sort(byDateDesc).slice(0, ACTIVITY_LIMIT).map(activityCard).join(''));
-    const album = document.getElementById('latest-album'), feat = document.getElementById('featured');
-    if (album || feat) loadJSON('data/gallery.json').then(d => {
-      if (album) album.innerHTML = [...d].sort(byDateDesc).slice(0, ALBUM_LIMIT).map(galleryCard).join('') || '<p class="notice">写真は準備中です。</p>';
-      if (feat) feat.innerHTML = d.filter(g => g.featured).sort(byDateDesc).map(galleryCard).join('') || '<p class="notice">注目記事は準備中です。</p>';
-    }).catch(err => {
-      console.error(err);
-      [album, feat].forEach(e => e && (e.innerHTML = '<p class="notice">データを読み込めませんでした。gallery.json の書き方を確認してください。</p>'));
-    });
     const snsBox = document.getElementById('sns-cards');
     if (snsBox) snsBox.innerHTML = SITE.sns.map(s => snsLink(s, 'sns-card',
       `<span class="sns-badge">${ICONS[s.id]}</span><span><strong>${esc(s.label)}</strong><span>${esc(s.handle)} をフォロー</span></span>`)).join('');

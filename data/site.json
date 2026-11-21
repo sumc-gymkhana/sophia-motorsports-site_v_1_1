@@ -1,0 +1,4 @@
+{
+  "baseUrl": "https://sumc-gymkhana.com",
+  "note": "公開URL（末尾の / は付けない）。tools/build.py が sitemap.xml や記事ページのURLを作るときに使います。"
+}

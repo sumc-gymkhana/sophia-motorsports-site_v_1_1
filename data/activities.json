@@ -1,6 +1,7 @@
 [
-  {"title":"春の新歓走行会","date":"2027-04-15","category":"Event","image":"images/activities/shinkan.jpg","description":"新入生向け体験走行会"},
-  {"title":"車両整備day","date":"2027-03-20","category":"Maintenance","image":"images/activities/maintenance.jpg","description":"オイル交換とブレーキ点検を行います。"},
-  {"title":"春合宿","date":"2027-03-05","category":"Camp","image":"images/activities/camp.jpg","description":"3日間の走り込み合宿。"},
-  {"title":"定例ミーティング","date":"2026-10-30","category":"Meeting","image":"images/activities/meeting.jpg","description":"年間計画と役割分担の確認。"}
+  {"title":"フォーミュラジムカーナ2026 決勝ラウンド","date":"2026-11-08","category":"Competition","image":"images/gallery/club-cars/nd-roadster.jpg","description":"富士スピードウェイに18大学が集まった全国大会に出場。女子クラスにも2名が出場しました。"},
+  {"title":"全日本学生ジムカーナ選手権 祝勝会","date":"2026-09-27","category":"Event","image":"images/activities/celebration.jpg","description":"四冠達成を祝い、四ツ谷の主婦会館プラザエフでOB・OGの皆さんと祝勝会。"},
+  {"title":"フォーミュラジムカーナ Rd.2 富士","date":"2026-08-23","category":"Competition","image":"images/activities/fg-rd2.jpg","description":"3名の合計タイムでトップ通過し、決勝ラウンド進出。"},
+  {"title":"OB・OG総会","date":"2026-05-10","category":"Meeting","image":"images/activities/ob-meeting.jpg","description":"ソフィアンズクラブで開催。卒業生20名と現役部員15名が交流しました。"},
+  {"title":"関東学生ジムカーナ新人戦","date":"2026-02-21","category":"Competition","image":"images/activities/rookie.jpg","description":"富士スピードウェイ ジムカーナコース。AT・ノーサイドクラスで優勝。"}
 ]

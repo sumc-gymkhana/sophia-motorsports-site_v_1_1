@@ -1,82 +1,73 @@
 [
   {
-    "title": "全関東学生ジムカーナ選手権",
-    "date": "2027-05-18",
+    "id": "club-cars",
+    "title": "部車 マツダ・ロードスター（ND）",
+    "date": "2026-11-21",
+    "category": "Cars",
+    "description": "SOPHIA UNIVERSITY のロゴを背負って走る部車のNDロードスター。練習も大会も、この1台と一緒です。",
+    "cover": "images/gallery/club-cars/nd-roadster.jpg",
+    "photos": [
+      { "src": "images/gallery/club-cars/nd-roadster.jpg", "caption": "テントの下で出走を待つ部車のNDロードスター", "author": "SUMC" }
+    ]
+  },
+  {
+    "id": "2026-formula-gymkhana-rd2",
+    "draft": true,
+    "title": "フォーミュラジムカーナ2026 Rd.2 富士",
+    "date": "2026-08-23",
     "category": "Competition",
-    "image": "images/album/gymkhana01.jpg",
-    "description": "決勝ヒート走行中の様子。団体3位を獲得。",
-    "author": "広報担当",
-    "featured": true,
-    "event": "2027関東学生ジムカーナ"
+    "description": "富士スピードウェイで行われた予選会Rd.2。GR86（AT）で3名の合計タイムを競い、トップで決勝ラウンドへ。",
+    "articleId": "2026-formula-gymkhana-rd2",
+    "photoFolder": { "path": "images/gallery/2026-formula-gymkhana-rd2", "count": 0, "ext": "jpg" }
   },
   {
-    "title": "新歓走行会",
-    "date": "2027-04-15",
-    "category": "Event",
-    "image": "images/album/shinkan01.jpg",
-    "description": "新入生が初めてハンドルを握りました。",
-    "author": "広報担当",
-    "featured": true,
-    "event": "2027新歓走行会"
+    "id": "2026-all-japan-student",
+    "draft": true,
+    "title": "全日本学生ジムカーナ選手権2026",
+    "date": "2026-10-07",
+    "category": "Competition",
+    "description": "男女の個人・団体の四冠を達成した大会遠征。",
+    "articleId": "2026-all-japan-student",
+    "photoFolder": { "path": "images/gallery/2026-all-japan-student", "count": 0, "ext": "jpg" }
   },
   {
-    "title": "春合宿 1日目",
-    "date": "2027-03-05",
-    "category": "Camp",
-    "image": "images/album/camp01.jpg",
-    "description": "朝一番のコース確認。",
-    "author": "副将",
-    "featured": false,
-    "event": "2027春合宿"
+    "id": "2026-kanto-rookie",
+    "draft": true,
+    "title": "関東学生ジムカーナ新人戦2026",
+    "date": "2026-02-21",
+    "category": "Competition",
+    "description": "富士スピードウェイ ジムカーナコースで行われた新人戦。AT・ノーサイドクラスで霜出左近が優勝。",
+    "articleId": "2026-kanto-rookie",
+    "photoFolder": { "path": "images/gallery/2026-kanto-rookie", "count": 0, "ext": "jpg" }
   },
   {
-    "title": "ブレーキ整備",
-    "date": "2027-02-20",
+    "id": "gymkhana-practice",
+    "draft": true,
+    "title": "ジムカーナ練習会",
+    "date": "2026-11-21",
+    "category": "Practice",
+    "description": "パイロンで作ったコースを何本も走り込む、いつもの練習会の風景。",
+    "articleId": "what-is-gymkhana",
+    "photoFolder": { "path": "images/gallery/gymkhana-practice", "count": 0, "ext": "jpg" }
+  },
+  {
+    "id": "maintenance",
+    "draft": true,
+    "title": "車両整備",
+    "date": "2026-11-21",
     "category": "Maintenance",
-    "image": "images/album/maint01.jpg",
-    "description": "パッド交換とフルード入れ替え。",
-    "author": "整備担当",
-    "featured": false,
-    "event": "2027春の整備day"
+    "description": "部車の整備は自分たちの手で。オイル交換から本格的な作業まで。",
+    "articleId": "what-you-can-do",
+    "photoFolder": { "path": "images/gallery/maintenance", "count": 0, "ext": "jpg" }
   },
   {
-    "title": "月例練習会",
-    "date": "2027-02-01",
-    "category": "Practice",
-    "image": "images/album/practice01.jpg",
-    "description": "パイロンコースで基礎練習。",
-    "author": "主将",
-    "featured": false,
-    "event": "2027月例練習会"
-  },
-  {
-    "title": "年間計画ミーティング",
-    "date": "2027-01-10",
-    "category": "Meeting",
-    "image": "images/album/meeting01.jpg",
-    "description": "新体制での目標を共有。",
-    "author": "広報担当",
-    "featured": false,
-    "event": "2027年間計画ミーティング"
-  },
-  {
-    "title": "秋の練習会",
-    "date": "2026-11-02",
-    "category": "Practice",
-    "image": "images/album/practice02.jpg",
-    "description": "タイム計測のデモ走行。",
-    "author": "主将",
-    "featured": false,
-    "event": "2026秋の練習会"
-  },
-  {
-    "title": "決勝ヒート 2本目",
-    "event": "2027関東学生ジムカーナ",
-    "date": "2027-05-18",
-    "category": "Competition",
-    "image": "images/album/gymkhana02.jpg",
-    "description": "2本目で自己ベストを更新。",
-    "author": "広報担当",
-    "featured": false
+    "id": "shinkan",
+    "draft": true,
+    "title": "新歓イベント",
+    "date": "2026-11-21",
+    "category": "Event",
+    "description": "見学に来てくれた新入生と、部車を囲んで。",
+    "articleId": "sumc-recruiting",
+    "photoFolder": { "path": "images/gallery/shinkan", "count": 0, "ext": "jpg" }
   }
 ]

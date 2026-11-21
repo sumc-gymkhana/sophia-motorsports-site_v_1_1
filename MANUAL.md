@@ -8,12 +8,12 @@
 3. ローカルでの動作確認（VS Code）
 4. GitHub の使い方
 5. レンタルサーバーへの公開（FTP）
-6. お知らせの更新（news.json）
+6. News（ブログ記事）の更新（news.json）・親子記事
 7. 部員紹介の更新（members.json）
 8. 部車紹介の更新（cars.json）
 9. 活動紹介・活動予定の更新（activities.json）
 10. 戦績の更新（results.json）
-11. アルバムの更新（gallery.json）・イベント別管理・注目記事
+11. ギャラリーの更新（gallery.json）・イベント別管理
 12. SNS・お問い合わせ先の変更
 13. 独自ドメイン・公開URL変更・SEO
 14. 運用ルール（最重要）
@@ -60,7 +60,12 @@
 ├─ members.html        部員紹介
 ├─ cars.html           部車紹介
 ├─ activities.html     活動紹介
-├─ album.html          アルバム
+├─ news.html           News（ブログ記事一覧・検索・タグ）
+├─ news-detail.html    記事ページの元（news-detail.html?id=記事ID）
+├─ album.html          ギャラリー（イベント一覧）
+├─ gallery-detail.html ギャラリー詳細の元（gallery-detail.html?id=イベントID）
+├─ news/ gallery/      tools/build.py が自動作成する記事・ギャラリーのページ（手で編集しない）
+├─ tools/              build.py（SEO用ページ・sitemap.xml の自動作成）
 ├─ results.html        戦績
 ├─ schedules.html      活動予定
 ├─ join.html           入部・見学案内
@@ -72,18 +77,21 @@
 ├─ css/                デザイン（style.css ほか）
 ├─ js/                 動作（main.js ほか）
 ├─ images/             写真（hero / members / cars / activities / album / logos）
-└─ data/               掲載内容（news / members / cars / activities / gallery / results .json）
+└─ data/               掲載内容（news / members / cars / activities / gallery / results .json、site.json＝公開URL）
 ```
 
 ### 各ページの役割と、元になるJSON
 | ページ | 役割 | 内容の元 |
 |---|---|---|
-| index.html | News・最新活動3件・最新アルバム6件・注目記事・公式SNS | news / activities / gallery.json |
+| index.html | News最新5件・最新活動3件・最新アルバム6件・注目記事（featuredの記事）・公式SNS | news / activities / gallery.json |
+| news.html | ブログ記事一覧。キーワード検索・カテゴリー・タグ絞り込み | news.json |
+| news-detail.html | 個別記事。パンくず・親子記事・前後の記事・関連記事 | news.json |
 | about.html | 部の紹介 | （文章。原則そのまま） |
 | members.html | 部員カード | members.json |
 | cars.html | 部車カード | cars.json |
 | activities.html | 活動一覧（新しい順） | activities.json |
-| album.html | 写真と活動記録。検索・絞り込み・イベント別表示 | gallery.json |
+| album.html | ギャラリー（イベント一覧と枚数） | gallery.json |
+| gallery-detail.html | イベントの写真一覧（拡大表示） | gallery.json |
 | results.html | 年度別の戦績 | results.json |
 | schedules.html | **今日以降の日付の活動**を自動表示 | activities.json |
 | join.html / contact.html | 入部案内 / お問い合わせ | （固定） |
@@ -95,7 +103,9 @@
 | `images/members/` | 部員の顔写真 |
 | `images/cars/` | 部車の写真 |
 | `images/activities/` | 活動の写真 |
-| `images/album/` | アルバムの写真 |
+| `images/news/記事ID/` | News記事の写真 |
+| `images/gallery/イベントID/` | ギャラリーの写真 |
+| `images/album/` | 旧アルバムの写真（そのまま使えます） |
 | `images/logos/` | ロゴ置き場 |
 
 ---
@@ -242,51 +252,39 @@ JSON編集 → 画像追加 → ローカル確認 → GitHubへバックアッ�
 
 ---
 
-## 6. お知らせの更新（`data/news.json`）
+## 6. News（ブログ記事）の更新（`data/news.json`）
 
-トップページの **News** に表示されます（最大5件）。写真は不要です。
+Newsはブログ形式です。**`news.json` に1件書き足すだけ**で、次がすべて自動で更新されます。
+記事一覧（news.html）／記事ページ／トップのNews（新しい順に5件）／検索／カテゴリー・タグ／親子記事ナビ／前後の記事／関連記事
 
-```json
-[
-  {
-    "date": "2027-04-01",
-    "title": "新歓開始のお知らせ",
-    "important": true
-  },
-  {
-    "date": "2027-03-10",
-    "title": "全関東学生ジムカーナ出場決定",
-    "important": false
-  }
-]
-```
+書き方・項目の一覧・本文の記法・親子記事の作り方は、サイトの **更新ガイド（how-to-update.html）の「4. News記事」** に例付きでまとめています。要点だけ：
 
 | 項目 | 書き方 |
 |---|---|
-| `date` | `年-月-日` を半角で。例 `2027-04-01`（`2027-4-1` はNG） |
-| `title` | お知らせの題名 |
-| `important` | `true`：赤い「重要」ラベルを付け、**一番上に固定**。`false`：通常 |
-| `url`（任意） | リンクさせたいときだけ追加。例 `"url": "https://..."` |
+| `id` | **必須**。URLになる名前（半角英数字と `-`）。重複不可・公開後は変えない |
+| `title` / `date` | 題名 / `2026-11-20` 形式 |
+| `category` | 日本語のまま（`大会結果` など）。新しい名前を書けば自動で増える |
+| `tags` | `["ジムカーナ", "全日本"]` |
+| `thumbnail` / `images` | 一覧の画像 / 本文の下に並ぶ写真 |
+| `content` | 本文。`["段落1", "段落2"]` と段落ごとに書くと楽 |
+| `parentId` | 親記事の `id`。書くとその記事の「子記事」になる |
+| `order` | 子記事の並び順（任意） |
+| `important` / `featured` / `draft` | 重要ラベル / トップの注目記事 / 非公開 |
+| `galleryId` | 関連するギャラリーの `id` |
 
-### 1件追加する手順
-1. `news.json` を開く。
-2. **最後の `}` の後ろにカンマ `,`** を付ける。
-3. 新しい1件を書く。**一番最後の項目の後ろにはカンマを付けない。**
-
-```json
-  },
-  {
-    "date": "2027-05-01",
-    "title": "春合宿の参加者を募集します",
-    "important": false
-  }
-]
+### 親子記事の例
 ```
+大会結果（category）
+└ 2026全日本ジムカーナ（id: 2026-all-japan）
+   ├ Day1（parentId: 2026-all-japan, order: 1）
+   ├ Day2（parentId: 2026-all-japan, order: 2）
+   └ 決勝（parentId: 2026-all-japan, order: 3）
+```
+子記事は `category`・`thumbnail` を省略すると親の値を使います。親記事の `date` を省略すると、子記事の最新日付になります。
 
 ### 注意
-- 並び順は自動です（新しい日付が上）。書く順番は気にしなくてOK。
-- `important: true` が残り続けると、古いお知らせが上に居座ります。**期限が過ぎたら `false` に直す**か削除してください。
-- 6件目以降はトップには出ません（データには残ります）。
+- 記事を追加・変更したら、公開前に **13-6 の `tools/build.bat`** を実行（検索エンジン用ページと sitemap.xml を更新）。
+- `id` を変えるとURLが変わり、SNSなどで共有されたリンクが切れます。
 
 ---
 
@@ -393,82 +391,54 @@ JSON編集 → 画像追加 → ローカル確認 → GitHubへバックアッ�
 
 ---
 
-## 11. アルバムの更新（`data/gallery.json` ＋ `images/album/`）
+## 11. ギャラリーの更新（`data/gallery.json` ＋ `images/gallery/`）
 
-アルバムは「**写真＋説明文＋活動記録**」です。
+ギャラリーは **「イベント → 写真」** の2階層です。`gallery.json` の **1件＝1イベント**。
+- `album.html`：イベント一覧（表紙・枚数・カテゴリ絞り込み・検索）
+- `gallery-detail.html?id=イベントID`（または `gallery/イベントID.html`）：そのイベントの写真一覧
 
-### 11-1. 活動写真を追加する流れ
-```
-①写真を images/album/ に入れる
-   ↓
-②gallery.json に1件追加
-   ↓
-③ローカル確認 → GitHub → FTPで公開
-```
-**写真1枚＝JSON1件**です。同じ日の写真が10枚なら、10件書きます（コピーして `title` `image` だけ変えると楽です）。
-
+### 11-1. 写真が多いとき（連番方式・おすすめ）
+1. 写真のファイル名を `1.jpg` 〜 `42.jpg` に変える（Windowsは全選択→F2で一括で連番にできます。その場合 `photoFolder` に `"prefix"` を指定）。
+2. `images/gallery/2026-all-japan/` に入れる。
+3. `gallery.json` に1件追加：
 ```json
 {
-  "title": "全関東学生ジムカーナ選手権",
-  "event": "2027関東学生ジムカーナ",
-  "date": "2027-05-18",
+  "id": "2026-all-japan",
+  "title": "2026全日本ジムカーナ",
+  "date": "2026-11-20",
   "category": "Competition",
-  "image": "images/album/gymkhana01.jpg",
-  "description": "決勝ヒート走行中の様子。団体3位を獲得。",
-  "author": "広報担当",
-  "featured": true
+  "description": "3日間の大会の様子",
+  "articleId": "2026-all-japan",
+  "photoFolder": { "path": "images/gallery/2026-all-japan", "count": 42, "ext": "jpg" }
 }
 ```
+`photoFolder` の追加オプション：`"start": 1`（開始番号）、`"pad": 3`（`001.jpg` のようなゼロ埋め桁数）、`"prefix": "IMG_"`（`IMG_1.jpg` など）。
 
-| 項目 | 内容 |
-|---|---|
-| title | 写真・記録の題名 |
-| event | **イベント名**（同じイベントは、**一字一句同じ**名前で書く） |
-| date | 撮影日・開催日（`2027-05-18`） |
-| category | 下の6種類から**英語のまま**1つ |
-| image | 写真の場所とファイル名 |
-| description | 説明文 |
-| author | 投稿者 |
-| featured | `true`：トップの注目記事に表示 / `false`：通常 |
-
-### 11-2. イベント別管理（カテゴリの選び方）
-| 画面での表示 | `category` に書く値 | 例 |
-|---|---|---|
-| 新歓・イベント | `Event` | 新歓走行会、新歓説明会 |
-| 大会 | `Competition` | 関東学生ジムカーナ |
-| 練習会 | `Practice` | 月例練習会 |
-| 整備 | `Maintenance` | 車両整備day |
-| 合宿 | `Camp` | 春合宿・夏合宿 |
-| ミーティング | `Meeting` | 年間計画ミーティング |
-
-> 大文字・小文字を含め、**表と同じ綴り**で書いてください。違う綴りは「その他」にまとめられます。
-
-### 11-3. 登録の具体例
-**例①：春合宿（3日間）の写真を登録する**
+### 11-2. 1枚ずつ書く方法（キャプションを付けたいとき）
 ```json
-{ "title": "春合宿 1日目 コース確認", "event": "2027春合宿", "date": "2027-03-05",
-  "category": "Camp", "image": "images/album/camp01.jpg",
-  "description": "朝一番のコース確認。", "author": "副将", "featured": false },
-{ "title": "春合宿 2日目 走行", "event": "2027春合宿", "date": "2027-03-06",
-  "category": "Camp", "image": "images/album/camp02.jpg",
-  "description": "走り込みの様子。", "author": "副将", "featured": false }
+"photos": [
+  "images/gallery/2026-shinkan/start.jpg",
+  { "src": "images/gallery/2026-shinkan/group.jpg", "caption": "集合写真", "author": "広報担当" }
+]
 ```
-→ アルバムの【イベント別】で「2027春合宿」にまとまります。
+`photos` と `photoFolder` は併用できます。`cover` で表紙を指定（省略時は1枚目）。
 
-**例②：新歓走行会** → `"category": "Event"`、`"event": "2027新歓走行会"`
-**例③：整備** → `"category": "Maintenance"`、`"event": "2027春の整備day"`
-**例④：ミーティング** → `"category": "Meeting"`、`"event": "2027年間計画ミーティング"`
+### 11-3. カテゴリ（`category` は英語のまま）
+| 画面での表示 | 値 |
+|---|---|
+| 新歓・イベント | `Event` |
+| 大会 | `Competition` |
+| 練習会 | `Practice` |
+| 整備 | `Maintenance` |
+| 合宿 | `Camp` |
+| ミーティング | `Meeting` |
 
-### 11-4. アルバム画面の使い方（見る人向け）
-- **表示方法**：「一覧／カテゴリ別／イベント別」を切り替え
-- **カテゴリ**ボタンで絞り込み、**検索窓**でタイトル・説明文・投稿者・カテゴリ・イベント名を検索
-- 写真クリックで拡大（◀▶で前後、**Esc**で閉じる）
+### 11-4. 記事との連携
+ギャラリーに `"articleId": "記事id"`、記事に `"galleryId": "ギャラリーid"` を書くと、相互にリンクが表示されます。
 
-### 11-5. 注目記事（`"featured": true`）の使い方
-`true` にした記事が、トップページの**「注目記事」**に表示されます。
-- 大会の結果、新歓の告知など、**見てほしい記事だけ**を `true` に。
-- 古くなったら `false` に戻す。`true` が多すぎるとトップが長くなるので、**3件前後**がおすすめ。
-- 「最新アルバム」には日付が新しい6件が自動で出ます（`featured` に関係なく）。
+### 11-5. トップページ
+- 「最新アルバム」：日付が新しいイベント6件。
+- 「注目記事」：`news.json` で `"featured": true` の記事（最大3件）。
 
 ---
 
@@ -550,6 +520,25 @@ URLを**変更した**ときは、上の欄に旧URL、下の欄に新URLを入�
 
 ### 13-5. ページの題名・説明を変える場合
 各HTMLの `<title>` と `<meta name="description">` を直します。HTMLを触る数少ない例外なので、**意味が分からなければ触らないで**詳しい人に頼んでください。
+
+---
+
+### 13-6. 記事・ギャラリーの検索エンジン対策（`tools/build.py`）
+JSONを追加するだけで記事は表示され、ページの `<title>`・説明文も自動で設定されます。さらに検索結果に記事を1つずつ載せるため、**記事やギャラリーを追加・変更したら公開前に**次を実行します。
+
+1. `data/site.json` の `baseUrl` を公開URLにしておく（13-3の一括置換で一緒に置換されます）。
+2. `tools/build.bat` をダブルクリック（またはサイトのフォルダで `python tools/build.py`）。
+3. 作られた `news/`・`gallery/` フォルダ、`sitemap.xml`、`data/_generated.json` をFTPでアップロード。
+
+| 自動で行うこと | 内容 |
+|---|---|
+| JSONのチェック | id重複・親記事が無い・日付の形式・画像が無い などを表示 |
+| 記事ページ作成 | `news/記事ID.html`（title・description・OGP・canonical・構造化データ入り） |
+| ギャラリーページ作成 | `gallery/イベントID.html` |
+| sitemap.xml | 固定ページ＋全記事＋全ギャラリーで作り直し |
+| 古いページの削除 | JSONから消した記事のページを削除 |
+
+> Python（無料）が必要です。未インストールなら python.org から入れてください（インストール時に「Add python.exe to PATH」にチェック）。
 
 ---
 

@@ -33,7 +33,7 @@
 <header id="site-header"></header>
 <main id="main-content">
 <section class="page-hero"><div class="container"><p class="eyebrow eyebrow-light">How to update</p><h1>更新ガイド</h1><p>専門知識は不要です。「写真を入れる」＋「JSONに1件書く」だけ。</p></div></section>
-<section class="section section-surface"><div class="container"><div class="howto"><nav class="howto-toc" aria-label="目次"><a href="#basics">0. はじめに</a><a href="#members">1. 部員</a><a href="#cars">2. 部車</a><a href="#activities">3. 活動</a><a href="#news">4. お知らせ</a><a href="#gallery">5. アルバム</a><a href="#images">6. 画像の場所</a><a href="#upload">7. アップロード</a><a href="#sns">8. SNS・連絡先</a></nav><div class="howto-body"><section id="basics"><h2>0. はじめに（まず読む）</h2><p>このサイトは <strong>「写真を入れる」＋「JSONファイルに1件書き足す」</strong>だけで更新できます。HTML・CSS・JavaScriptは触らないでください。</p><ol><li>画像を所定のフォルダに入れる</li><li><code>data</code> フォルダのJSONファイルに1件書き足す</li><li>サーバーにFTPでアップロードする（変更したファイルだけでOK）</li><li>サイトを開き、反映を確認する（反映されないときはブラウザを再読み込み）</li></ol><div class="callout"><strong>JSONの注意点</strong><br>① 文字は必ず半角の <code>"</code> で囲む　② 項目の間は <code>,</code>（カンマ）で区切る　③ <strong>最後の項目の後ろにカンマを付けない</strong>　④ 全体を <code>[</code> と <code>]</code> で囲む。間違えるとそのページが「データを読み込めませんでした」と表示されます。書いたあとに <code>jsonlint.com</code> などのJSON検証サイトに貼ると間違いを探せます。メモ帳でもOKですが、文字コードは UTF-8 で保存してください。</div><p><strong>1件追加する基本のやり方：</strong>最後の <code>}</code> の後ろに <code>,</code> を付け、新しい <code>{ ... }</code> を書き足します。</p><pre><code>[
+<section class="section section-surface"><div class="container"><div class="howto"><nav class="howto-toc" aria-label="目次"><a href="#basics">0. はじめに</a><a href="#members">1. 部員</a><a href="#cars">2. 部車</a><a href="#activities">3. 活動</a><a href="#news">4. News記事</a><a href="#gallery">5. ギャラリー</a><a href="#images">6. 画像の場所</a><a href="#upload">7. アップロード</a><a href="#seo">7.5 SEO更新</a><a href="#sns">8. SNS・連絡先</a></nav><div class="howto-body"><section id="basics"><h2>0. はじめに（まず読む）</h2><p>このサイトは <strong>「写真を入れる」＋「JSONファイルに1件書き足す」</strong>だけで更新できます。HTML・CSS・JavaScriptは触らないでください。</p><ol><li>画像を所定のフォルダに入れる</li><li><code>data</code> フォルダのJSONファイルに1件書き足す</li><li>サーバーにFTPでアップロードする（変更したファイルだけでOK）</li><li>サイトを開き、反映を確認する（反映されないときはブラウザを再読み込み）</li></ol><div class="callout"><strong>JSONの注意点</strong><br>① 文字は必ず半角の <code>"</code> で囲む　② 項目の間は <code>,</code>（カンマ）で区切る　③ <strong>最後の項目の後ろにカンマを付けない</strong>　④ 全体を <code>[</code> と <code>]</code> で囲む。間違えるとそのページが「データを読み込めませんでした」と表示されます。書いたあとに <code>jsonlint.com</code> などのJSON検証サイトに貼ると間違いを探せます。メモ帳でもOKですが、文字コードは UTF-8 で保存してください。</div><p><strong>1件追加する基本のやり方：</strong>最後の <code>}</code> の後ろに <code>,</code> を付け、新しい <code>{ ... }</code> を書き足します。</p><pre><code>[
   { &quot;title&quot;: &quot;既存の1件目&quot;, ... },
   { &quot;title&quot;: &quot;新しく追加する1件&quot;, ... }
 ]</code></pre><h3>画像のルール</h3><ul><li>ファイル名は半角英数字とハイフン（例：<code>gymkhana01.jpg</code>）。日本語・スペースは使わない。</li><li>JPG形式、長辺1600px前後、1枚あたり500KB以下が目安（スマホの写真は縮小してから）。</li><li>JSONの <code>"image"</code> には、置いた場所とファイル名をそのまま書く（例：<code>images/album/gymkhana01.jpg</code>）。大文字小文字も一致させる。</li><li>画像が見つからないときは「NO IMAGE」の代替画像が表示されます。</li></ul></section><section id="members"><h2>1. 部員を追加する</h2><p>① 顔写真を <code>images/members/</code> に入れる　② <code>data/members.json</code> に1件追記する。</p><pre><code>{
@@ -56,20 +56,47 @@
   &quot;category&quot;: &quot;Event&quot;,
   &quot;image&quot;: &quot;images/activities/shinkan.jpg&quot;,
   &quot;description&quot;: &quot;新入生向け体験走行会&quot;
-}</code></pre><div class="callout">今日より<strong>先の日付</strong>で登録すると、<a href="schedules.html">Schedules</a>（活動予定）に自動で表示されます。トップページには日付の新しい順に3件が表示されます。</div></section><section id="news"><h2>4. お知らせを追加する</h2><p><code>data/news.json</code> に1件追記します。写真は不要です。</p><pre><code>{
-  &quot;date&quot;: &quot;2027-04-01&quot;,
-  &quot;title&quot;: &quot;新歓開始のお知らせ&quot;,
-  &quot;important&quot;: true
-}</code></pre><ul><li><code>"important": true</code> にすると、赤い「重要」ラベルが付き、トップのお知らせの<strong>一番上に固定</strong>されます。通常は <code>false</code>。</li><li>期限が過ぎた重要なお知らせは <code>false</code> に直すか削除してください（<code>true</code> のままだと上に残り続けます）。</li><li>リンクを付けたいときは <code>"url": "https://..."</code> を追加できます（任意）。</li><li>トップには最大5件表示されます。</li></ul></section><section id="gallery"><h2>5. アルバム（写真＋活動記録）を追加する</h2><p>① 写真を <code>images/album/</code> に入れる　② <code>data/gallery.json</code> に1件追記する。</p><pre><code>{
-  &quot;title&quot;: &quot;全関東学生ジムカーナ&quot;,
-  &quot;event&quot;: &quot;2027関東学生ジムカーナ&quot;,
-  &quot;date&quot;: &quot;2027-05-18&quot;,
-  &quot;category&quot;: &quot;Competition&quot;,
-  &quot;image&quot;: &quot;images/album/gymkhana01.jpg&quot;,
-  &quot;description&quot;: &quot;決勝ヒート&quot;,
-  &quot;author&quot;: &quot;広報担当&quot;,
-  &quot;featured&quot;: true
-}</code></pre><h3>各項目の意味</h3><ul><li><code>event</code>：同じイベントの写真には<strong>同じ名前</strong>を書きます。アルバムの「イベント別」表示でまとまります（誤字に注意）。</li><li><code>category</code>：次のどれか1つを、英語のまま書きます。</li></ul><table><tbody><tr><td>新歓・イベント</td><td><code>Event</code></td></tr><tr><td>大会</td><td><code>Competition</code></td></tr><tr><td>整備</td><td><code>Maintenance</code></td></tr><tr><td>練習会</td><td><code>Practice</code></td></tr><tr><td>合宿</td><td><code>Camp</code></td></tr><tr><td>ミーティング</td><td><code>Meeting</code></td></tr></tbody></table><ul><li><code>featured</code>：<code>true</code> にするとトップの「注目記事」に表示。普通は <code>false</code>。</li><li>1枚ずつ1件として書きます。同じイベントの写真が10枚あれば10件になります。</li></ul></section><section id="images"><h2>6. 画像を置く場所のまとめ</h2><table><thead><tr><th>用途</th><th>置き場所</th><th>JSON</th></tr></thead><tbody><tr><td>部員の顔写真</td><td><code>images/members/</code></td><td>members.json</td></tr><tr><td>部車の写真</td><td><code>images/cars/</code></td><td>cars.json</td></tr><tr><td>活動の写真</td><td><code>images/activities/</code></td><td>activities.json</td></tr><tr><td>アルバムの写真</td><td><code>images/album/</code></td><td>gallery.json</td></tr><tr><td>トップの大きな写真</td><td><code>images/hero/hero.jpg</code></td><td>（JSON不要・同名で差し替え）</td></tr></tbody></table></section><section id="upload"><h2>7. サーバーへアップロードする（FTP）</h2><ol><li>FTPソフト（FileZilla など）で、レンタルサーバーに接続する。接続情報はサーバー契約時の案内にあります。</li><li>公開用フォルダを開く（Xserver・お名前.comは <code>public_html</code>、さくらは <code>www</code> が目安。契約先の案内を確認）。</li><li>変更した <code>data/*.json</code> と、追加した画像だけをアップロードして上書きする。</li><li>ブラウザで公開サイトを開き、再読み込み（Ctrl+F5 / スマホは更新）して確認する。</li></ol><div class="callout">初回だけ、フォルダごと（index.html などの全ページ、<code>css</code>・<code>js</code>・<code>data</code>・<code>images</code>）をアップロードします。すべてのHTMLの <code>https://YOUR-DOMAIN</code> を公開URLに置換する作業は、引き継ぎ時に1回だけ必要です。</div></section><section id="sns"><h2>8. SNS・連絡先を変える</h2><p>SNSのURLとお問い合わせの宛先メールは <code>js/main.js</code> の最初にある <code>SITE</code> にまとまっています。ここだけは、引き継ぎ時にJavaScript担当（詳しい人）に頼んでください。</p></section></div></div></div></section>
+}</code></pre><div class="callout">今日より<strong>先の日付</strong>で登録すると、<a href="schedules.html">Schedules</a>（活動予定）に自動で表示されます。トップページには日付の新しい順に3件が表示されます。</div></section><section id="news"><h2>4. News（ブログ記事）を追加する</h2><p>① 写真を <code>images/news/記事ID/</code> に入れる　② <code>data/news.json</code> に1件追記する。一覧・記事ページ・トップのNews・検索・タグ・前後の記事・関連記事は<strong>すべて自動</strong>で作られます。</p><pre><code>{
+  "id": "2026-all-japan-gymkhana",
+  "title": "全日本ジムカーナ参戦記",
+  "date": "2026-11-20",
+  "category": "大会結果",
+  "tags": ["ジムカーナ", "全日本"],
+  "thumbnail": "images/news/2026-all-japan/thumb.jpg",
+  "images": [
+    "images/news/2026-all-japan/1.jpg",
+    { "src": "images/news/2026-all-japan/2.jpg", "caption": "スタート前" }
+  ],
+  "content": [
+    "1つ目の段落です。",
+    "## 見出し",
+    "2つ目の段落。**太字** や [リンク](https://example.com) も書けます。"
+  ]
+}</code></pre><table><tbody>
+<tr><td><code>id</code></td><td><strong>必須</strong>。記事のURLになる名前。半角英数字と <code>-</code> のみ。他の記事と重複不可。公開後は変えない</td></tr>
+<tr><td><code>title</code> / <code>date</code></td><td>題名 / 投稿日（<code>YYYY-MM-DD</code>）</td></tr>
+<tr><td><code>category</code></td><td>日本語でそのまま（例：<code>大会結果</code>・<code>イベント</code>・<code>お知らせ</code>）。新しい名前を書けばカテゴリーが自動で増えます</td></tr>
+<tr><td><code>tags</code></td><td>タグの一覧。<code>#</code> は不要。クリックで同じタグの記事一覧へ</td></tr>
+<tr><td><code>thumbnail</code></td><td>一覧に出る画像（省略すると <code>images</code> の1枚目）</td></tr>
+<tr><td><code>images</code></td><td>本文の下に並ぶ写真（クリックで拡大）。文字だけでも、<code>{"src","caption"}</code> でも可</td></tr>
+<tr><td><code>content</code></td><td>本文。<code>[ "段落1", "段落2" ]</code> のように<strong>段落ごとに分けて</strong>書くと楽です</td></tr>
+<tr><td>任意</td><td><code>"important": true</code>（重要ラベル）／<code>"featured": true</code>（トップの注目記事）／<code>"galleryId"</code>（ギャラリーへのリンク）／<code>"description"</code>（検索結果の説明文）／<code>"draft": true</code>（非公開）</td></tr>
+</tbody></table>
+<h3>本文の書き方（content）</h3><table><tbody><tr><td><code>## 見出し</code></td><td>見出し（<code>###</code> で小見出し）</td></tr><tr><td><code>- 項目</code></td><td>箇条書き（<code>1. 項目</code> で番号付き）</td></tr><tr><td><code>&gt; 文章</code></td><td>引用（コメントなど）</td></tr><tr><td><code>**文字**</code></td><td>太字</td></tr><tr><td><code>[文字](URL)</code></td><td>リンク</td></tr><tr><td><code>![説明](images/…jpg)</code></td><td>本文の途中に画像</td></tr></tbody></table>
+<h3>親子記事（大会 → Day1・Day2・決勝 など）</h3><p>まず親記事を書き、子記事に <code>"parentId": "親のid"</code> を付けるだけです。子記事の <code>category</code>・<code>thumbnail</code> は省略すると親のものを使います。並び順は <code>"order": 1</code> などで指定できます（省略時は日付順）。</p><pre><code>{ "id": "2026-all-japan", "type": "parent", "title": "2026全日本ジムカーナ", "date": "2026-11-20", "category": "大会結果", "content": "大会のまとめ" },
+{ "id": "2026-all-japan-day1", "parentId": "2026-all-japan", "title": "Day1", "date": "2026-11-18", "order": 1, "content": "..." },
+{ "id": "2026-all-japan-day2", "parentId": "2026-all-japan", "title": "Day2", "date": "2026-11-19", "order": 2, "content": "..." }</code></pre><p>親記事のページには「子記事一覧」、子記事のページには親記事と兄弟記事のナビが自動で表示されます。子記事の下にさらに子記事を作ることもできます。</p></section><section id="gallery"><h2>5. ギャラリー（イベントごとの写真）を追加する</h2><p>① 写真を <code>images/gallery/イベントID/</code> に入れる　② <code>data/gallery.json</code> に<strong>イベント1件</strong>を追記する。</p><h3>A. 写真に連番を付けた場合（おすすめ・大量の写真向き）</h3><p>写真のファイル名を <code>1.jpg</code>、<code>2.jpg</code>…<code>42.jpg</code> にしておけば、枚数を書くだけで全部表示されます。</p><pre><code>{
+  "id": "2026-all-japan",
+  "title": "2026全日本ジムカーナ",
+  "date": "2026-11-20",
+  "category": "Competition",
+  "description": "3日間の大会の様子",
+  "articleId": "2026-all-japan",
+  "photoFolder": { "path": "images/gallery/2026-all-japan", "count": 42, "ext": "jpg" }
+}</code></pre><h3>B. 1枚ずつ書く場合（キャプションを付けたいとき）</h3><pre><code>  "photos": [
+    "images/gallery/2026-shinkan/start.jpg",
+    { "src": "images/gallery/2026-shinkan/group.jpg", "caption": "集合写真", "author": "広報担当" }
+  ]</code></pre><ul><li><code>category</code>：下の表の英語のまま1つ。</li><li><code>cover</code>：一覧に出す表紙（省略すると1枚目）。</li><li><code>articleId</code>：関連するNews記事のid（任意）。記事側には <code>"galleryId"</code> を書くと相互にリンクされます。</li><li>A と B は同時に使えます（B の写真が先に並びます）。</li></ul><table><tbody><tr><td>新歓・イベント</td><td><code>Event</code></td></tr><tr><td>大会</td><td><code>Competition</code></td></tr><tr><td>整備</td><td><code>Maintenance</code></td></tr><tr><td>練習会</td><td><code>Practice</code></td></tr><tr><td>合宿</td><td><code>Camp</code></td></tr><tr><td>ミーティング</td><td><code>Meeting</code></td></tr></tbody></table></section><section id="images"><h2>6. 画像を置く場所のまとめ</h2><table><thead><tr><th>用途</th><th>置き場所</th><th>JSON</th></tr></thead><tbody><tr><td>部員の顔写真</td><td><code>images/members/</code></td><td>members.json</td></tr><tr><td>部車の写真</td><td><code>images/cars/</code></td><td>cars.json</td></tr><tr><td>活動の写真</td><td><code>images/activities/</code></td><td>activities.json</td></tr><tr><td>News記事の写真</td><td><code>images/news/記事ID/</code></td><td>news.json</td></tr><tr><td>ギャラリーの写真</td><td><code>images/gallery/イベントID/</code></td><td>gallery.json</td></tr><tr><td>トップの大きな写真</td><td><code>images/hero/hero.jpg</code></td><td>（JSON不要・同名で差し替え）</td></tr></tbody></table></section><section id="upload"><h2>7. サーバーへアップロードする（FTP）</h2><ol><li>FTPソフト（FileZilla など）で、レンタルサーバーに接続する。接続情報はサーバー契約時の案内にあります。</li><li>公開用フォルダを開く（Xserver・お名前.comは <code>public_html</code>、さくらは <code>www</code> が目安。契約先の案内を確認）。</li><li>変更した <code>data/*.json</code> と、追加した画像だけをアップロードして上書きする。</li><li>ブラウザで公開サイトを開き、再読み込み（Ctrl+F5 / スマホは更新）して確認する。</li></ol><div class="callout">初回だけ、フォルダごと（index.html などの全ページ、<code>css</code>・<code>js</code>・<code>data</code>・<code>images</code>）をアップロードします。すべてのHTMLの <code>https://YOUR-DOMAIN</code> を公開URLに置換する作業は、引き継ぎ時に1回だけ必要です。</div></section><section id="seo"><h2>7.5 検索エンジン用ページを更新する（記事を追加したとき）</h2><p>JSONを追加しただけでも記事は表示されます。さらに、Google検索に記事を1つずつ載せるため、アップロード前に次を行います。</p><ol><li><code>tools/build.bat</code> をダブルクリック（Macやコマンドの場合は <code>python tools/build.py</code>）。</li><li>「✔ 完了しました」と出ればOK。「✖」が出たら表示どおりにJSONを直して再実行。「⚠」は画像が見つからないなどの注意です。</li><li><code>news/</code>・<code>gallery/</code> フォルダ、<code>sitemap.xml</code>、<code>data/_generated.json</code> もアップロードする。</li></ol><div class="callout">これで記事ごとに <code>/news/記事ID.html</code>・<code>/gallery/イベントID.html</code> のページ（タイトル・説明文入り）が作られ、<code>sitemap.xml</code> にも自動で追加されます。<code>news/</code>・<code>gallery/</code> の中のファイルは手で編集しないでください。</div></section><section id="sns"><h2>8. SNS・連絡先を変える</h2><p>SNSのURLとお問い合わせの宛先メールは <code>js/main.js</code> の最初にある <code>SITE</code> にまとまっています。ここだけは、引き継ぎ時にJavaScript担当（詳しい人）に頼んでください。</p></section></div></div></div></section>
 
 </main>
 <footer id="site-footer"></footer>

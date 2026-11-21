@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- tools/build.py が自動作成。記事・ギャラリーを追加したら build.py を再実行してください。 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://YOUR-DOMAIN/</loc></url>
-  <url><loc>https://YOUR-DOMAIN/about.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN/members.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN/cars.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN/activities.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN/album.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN/results.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN/schedules.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN/join.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN/contact.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/</loc></url>
+  <url><loc>https://sumc-gymkhana.com/about.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/activities.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/album.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/cars.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/contact-visit.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/contact.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/join.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/members.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/news.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/results.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/schedules.html</loc></url>
+  <url><loc>https://sumc-gymkhana.com/news/season-2025.html</loc><lastmod>2025-11-02</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/2025-formula-gymkhana-rd2.html</loc><lastmod>2025-06-30</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/2025-formula-gymkhana-final.html</loc><lastmod>2025-11-02</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/season-2026.html</loc><lastmod>2026-11-08</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/2026-kanto-rookie.html</loc><lastmod>2026-02-21</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/2026-formula-gymkhana-rd2.html</loc><lastmod>2026-08-23</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/2026-all-japan-student.html</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/2026-formula-gymkhana-final.html</loc><lastmod>2026-11-08</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/2026-ob-og-meeting.html</loc><lastmod>2026-05-10</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/ob-yamano-tetsuya.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/yotsuya-campus-life.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/what-is-gymkhana.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/what-you-can-do.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/start-motorsports-beginner.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/news/sumc-recruiting.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://sumc-gymkhana.com/gallery/club-cars.html</loc><lastmod>2026-11-21</lastmod></url>
 </urlset>

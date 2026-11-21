@@ -1,0 +1,25 @@
+/* pages.css — about.html「もっとSUMCを知る」・contact-visit.html 用の追加スタイル
+   色・カード・ホバーは style.css の feature-card / sns-card をそのまま利用 */
+
+/* About：サイトナビゲーション（トップと同じ feature-card のデザイン） */
+.explore-grid{margin-top:56px}
+.explore-card{min-height:240px}
+.explore-card .card-copy{position:relative;padding-top:40px}
+.explore-arrow{position:absolute;right:0;bottom:4px;width:20px;height:20px;color:var(--color-brand);transition:transform var(--transition)}
+.explore-card:hover .explore-arrow{transform:translateX(4px)}
+@media(max-width:1024px){.explore-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:767px){.explore-grid{margin-top:40px;grid-template-columns:1fr}.explore-card{min-height:0}.explore-card .card-copy{padding-top:28px}}
+
+/* 見学案内 */
+.visit-lead{margin-top:24px}
+.visit-lead p{margin:0 0 12px;color:var(--color-muted);font-size:15px;line-height:2}
+.visit-methods{padding:40px;background:var(--color-white);border-radius:var(--radius-card);box-shadow:0 20px 60px rgba(38,16,22,.08)}
+.visit-title{margin:0 0 8px;font-size:22px}
+.visit-note{margin:0 0 20px;color:var(--color-muted);font-size:13px;line-height:1.9}
+.visit-methods .visit-note:last-child{margin:20px 0 0}
+.visit-sub{margin:28px 0 12px;color:var(--color-muted);font-size:12px;font-weight:700;letter-spacing:.12em}
+.visit-sns{grid-template-columns:1fr;gap:12px}
+.visit-mail strong,.visit-sns strong{font-size:16px}
+.visit-mail span span{word-break:break-all}
+@media(max-width:767px){.visit-methods{padding:24px}.visit-methods .sns-card{padding:20px}}
+.contact-intro h2{font-size:clamp(34px,4vw,56px)}
